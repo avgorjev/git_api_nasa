@@ -8,14 +8,14 @@ on:
   workflow_dispatch:
     inputs:
       logLevel:
-      description: 'Select a test'
-      required: true
-      default: 'all tests'
-      type: choice
-      options:
-        - all_tests
-        - first_test
-        - second_test    
+        description: 'Select a test'
+        required: true
+        default: 'all tests'
+        type: choice
+        options:
+          - all_tests
+          - first_test
+          - second_test    
 
 permissions:
   contents: read
