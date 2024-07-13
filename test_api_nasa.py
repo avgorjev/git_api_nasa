@@ -1,7 +1,12 @@
 import requests
 import datetime
+import os
 
-api_key = 'ZiRfZSQLtIUkzBCdY9eix774nSMnnyOMWZKaXmte'
+api_key = os.getenv('MY_API_KEY')
+
+#print(API_KEY)
+
+api_key_2 = 'ZiRfZSQLtIUkzBCdY9eix774nSMnnyOMWZKaXmte'
 
 def date_now():
     return datetime.date.today().strftime("%Y-%m-%d")
