@@ -17,7 +17,7 @@ jobs:
     steps:
     - uses: actions/checkout@v4
     - name: Set up Python 3.10
-      uses: actions/setup-python@v3
+      uses: actions/setup-python@v4
       with:
         python-version: "3.10"
     - name: Install dependencies
@@ -34,3 +34,26 @@ jobs:
         path:
           reports
         retention-days: 1
+
+  prepare_reports:
+    
+    runs-on: macos-latest
+    needs: api_tests
+    name: Creating report
+    
+    steps:
+      - uses: actions/setup-java@v3
+        with:
+          distibution: 'microsoft'
+          java-version: '17'
+      - run: brew install allure
+      - name: Download artifact
+        uses: actions/download-artifact@v3
+      - run: allure generate -c reports -o _site
+      - name: Save reports
+        uses: actions/upload-artifact@v3
+        with: 
+          name: _site
+          path:
+            _site
+          retention-days: 1
