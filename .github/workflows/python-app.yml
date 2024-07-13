@@ -28,7 +28,7 @@ jobs:
       run: |
         pytest -v -s --alluredir reports
     - name: Save results
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with: 
         name: reports
         path:
