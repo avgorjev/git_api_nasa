@@ -39,13 +39,13 @@ jobs:
     
     runs-on: macos-latest
     needs: api_tests
-    name: Creating report
+    name: creating report
     
     steps:
-      - uses: actions/setup-java@v3
+      - uses: actions/setup-java@v4
         with:
-          distibution: 'microsoft'
-          java-version: '17'
+          distribution: 'temurin' # See 'Supported distributions' for available options
+          java-version: '21'
       - run: brew install allure
       - name: Download artifact
         uses: actions/download-artifact@v3
