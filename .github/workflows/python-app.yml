@@ -1,4 +1,4 @@
-name: Python application
+name: Astronomy Picture of the Day
 
 on:
   push:
@@ -10,7 +10,7 @@ permissions:
   contents: read
 
 jobs:
-  build:
+  api_tests:
 
     runs-on: ubuntu-latest
 
@@ -26,4 +26,11 @@ jobs:
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Test with pytest
       run: |
-        pytest -v -s
+        pytest -v -s --alluredir reports
+    - name: Save results
+      uses: actions/upload-artifact@v3
+      with: 
+        name: reports
+        path:
+          reports
+        retention-days: 1
