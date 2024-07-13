@@ -7,9 +7,10 @@ on:
     branches: [ "main" ]
   workflow_dispatch:
     inputs:
-      description: Select a test
+      logLevel:
+      description: 'Select a test'
       required: true
-      default: all tests
+      default: 'all tests'
       type: choice
       options:
         - all_tests
