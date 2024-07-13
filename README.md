@@ -1,5 +1,5 @@
 # Astronomy Picture of the Day ([APOD](https://api.nasa.gov/)) microservice
 
-### Please start workflow here
+### Please select a test and run workflow [here](https://github.com/avgorjev/git_api_nasa/actions/workflows/python-app.yml)
 
 ### The Allure report will be available on this [page](https://avgorjev.github.io/git_api_nasa/)
