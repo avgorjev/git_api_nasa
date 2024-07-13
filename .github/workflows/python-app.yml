@@ -6,16 +6,6 @@ on:
   pull_request:
     branches: [ "main" ]
   workflow_dispatch:
-    inputs:
-      logLevel:
-        description: 'Select a test'
-        required: true
-        default: 'all tests'
-        type: choice
-        options:
-          - all_tests
-          - first_test
-          - second_test    
 
 permissions:
   contents: read
@@ -39,17 +29,8 @@ jobs:
         python -m pip install --upgrade pip
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: All tests (with pytest and allure)
-      if: "workflow_dispatch.inputs.logLevel == 'all tests'"
       run: |
         pytest -v -s --alluredir reports
-    - name: First test (with pytest and allure)
-      if: "workflow_dispatch.inputs.logLevel == 'first test'"
-      run: |
-        pytest -v -s test_api_nasa.py::test_apod_today --alluredir reports
-    - name: Second test (with pytest and allure)
-      if: "workflow_dispatch.inputs.logLevel == 'second test'"
-      run: |
-        pytest -v -s test_api_nasa.py::test_apod_more_oldest --alluredir reports
     - name: Save results
       uses: actions/upload-artifact@v4
       with: 
