@@ -68,7 +68,6 @@ def test_apod_more_newest():
 def test_apod_one_count():
     count = 1
     response = requests.request("GET", url_count(count), headers=headers, data=payload)
-    print('count:', len(response.json()))
     assert response.status_code == 200
     assert len(response.json()) == count
 
@@ -83,7 +82,6 @@ def test_apod_zero_count():
 def test_apod_count_is_100():
     count = 100
     response = requests.request("GET", url_count(count), headers=headers, data=payload)
-    print('count:', len(response.json()))
     assert response.status_code == 200
     assert len(response.json()) == count
 
