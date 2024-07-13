@@ -2,7 +2,7 @@ name: Astronomy Picture of the Day
 
 on:
 
-  repository_dispatch:
+  workflow_dispatch
 
 permissions:
   contents: read
