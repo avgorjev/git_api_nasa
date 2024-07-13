@@ -8,16 +8,14 @@ on:
   workflow_dispatch:
     inputs:
       Automated tests:
-        description: 'Choose test'
+        description: 'Select a test'
         required: true
         default: 'info'
         type: choice
         options:
         - info
         - warning
-        - debug
-
-    
+        - debug    
 
 permissions:
   contents: read
