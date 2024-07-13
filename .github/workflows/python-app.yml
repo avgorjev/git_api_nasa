@@ -7,10 +7,10 @@ on:
     branches: [ "main" ]
   workflow_dispatch:
     inputs:
-      Log level:
-        description: 'Log level'
+      Automated tests:
+        description: 'Choose test'
         required: true
-        default: 'warning'
+        default: 'info'
         type: choice
         options:
         - info
