@@ -1,10 +1,7 @@
 name: Astronomy Picture of the Day
 
 on:
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+
   repository_dispatch:
 
 permissions:
