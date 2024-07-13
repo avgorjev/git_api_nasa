@@ -39,15 +39,15 @@ jobs:
         python -m pip install --upgrade pip
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: All tests (with pytest and allure)
-      if: "github.event.inputs.logLevel == 'all tests'"
+      if: "workflow_dispatch.inputs.logLevel == 'all tests'"
       run: |
         pytest -v -s --alluredir reports
     - name: First test (with pytest and allure)
-      if: "github.event.inputs.logLevel == 'first test'"
+      if: "workflow_dispatch.inputs.logLevel == 'first test'"
       run: |
         pytest -v -s test_api_nasa.py::test_apod_today --alluredir reports
     - name: Second test (with pytest and allure)
-      if: "github.event.inputs.logLevel == 'second test'"
+      if: "workflow_dispatch.inputs.logLevel == 'second test'"
       run: |
         pytest -v -s test_api_nasa.py::test_apod_more_oldest --alluredir reports
     - name: Save results
