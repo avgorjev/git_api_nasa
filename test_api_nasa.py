@@ -39,33 +39,33 @@ payload = {}
 headers = {}
 
 
-def apod_today():
+def test_apod_today():
     response = requests.request("GET", url, headers=headers, data=payload)
     assert response.status_code == 200
     assert response.json()['date'] == date_now()
 
-def apod_oldest():
+def test_apod_oldest():
     date = date_anyday(1995,6, 16)
     response = requests.request("GET", url_date(date), headers=headers, data=payload)
     assert response.status_code == 200
     assert response.json()['date'] == date
 
 
-def apod_more_oldest():
+def test_apod_more_oldest():
     date = date_anyday(1995,6, 15)
     response = requests.request("GET", url_date(date), headers=headers, data=payload)
     assert response.status_code == 400
     assert response.json()['msg'] == f'Date must be between Jun 16, 1995 and {date_now_response()}.'
 
 
-def apod_more_newest():
+def test_apod_more_newest():
     date = date_tomorrow()
     response = requests.request("GET", url_date(date), headers=headers, data=payload)
     assert response.status_code == 400
     assert response.json()['msg'] == f'Date must be between Jun 16, 1995 and {date_now_response()}.'
 
 
-def apod_one_count():
+def test_apod_one_count():
     count = 1
     response = requests.request("GET", url_count(count), headers=headers, data=payload)
     print('count:', len(response.json()))
@@ -73,14 +73,14 @@ def apod_one_count():
     assert len(response.json()) == count
 
 
-def apod_zero_count():
+def test_apod_zero_count():
     count = 0
     response = requests.request("GET", url_count(count), headers=headers, data=payload)
     assert response.status_code == 400
     assert response.json()['msg'] == 'Count must be positive and cannot exceed 100'
 
 
-def apod_count_is_100():
+def test_apod_count_is_100():
     count = 100
     response = requests.request("GET", url_count(count), headers=headers, data=payload)
     print('count:', len(response.json()))
