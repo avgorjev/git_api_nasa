@@ -7,15 +7,14 @@ on:
     branches: [ "main" ]
   workflow_dispatch:
     inputs:
-      Automated tests:
-        description: 'Select a test'
-        required: true
-        default: 'all tests'
-        type: choice
-        options:
-        - all tests
-        - first test
-        - second test    
+      description: Select a test
+      required: true
+      default: all tests
+      type: choice
+      options:
+        - all_tests
+        - first_test
+        - second_test    
 
 permissions:
   contents: read
