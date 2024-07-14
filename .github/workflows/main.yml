@@ -47,7 +47,7 @@ jobs:
         -o pages.zip
     - run: mkdir reports && unzip artifacts.zip -d reports
     - run: mkdir all-pages pages-history && unzip pages.zip -d all-pages && tar -xvf all-pages/artifact.tar -c pages-history
-    - run: cp -r pages-history/history/ reports
+    - run: cp -r pages-history/history reports
     - name: Save results
       uses: actions/upload-artifact@v4
       with:
