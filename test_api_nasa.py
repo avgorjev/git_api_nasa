@@ -4,7 +4,7 @@ import os
 
 API_KEY = os.environ['api_key']
 
-api_key_2 = 'ZiRfZSQLtIUkzBCdY9eix774nSMnnyOMWZKaXmte'
+
 
 def date_now():
     return datetime.date.today().strftime("%Y-%m-%d")
