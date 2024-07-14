@@ -76,7 +76,7 @@ jobs:
         python -m pip install --upgrade pip
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
     - name: Download artifact
-      uses: actions/download-artifact@v4
+      uses: actions/download-artifact@v3
     - name: All tests (with pytest and allure)
       run: |
         pytest -v -s --alluredir reports
@@ -102,7 +102,7 @@ jobs:
           java-version: '21'
       - run: brew install allure
       - name: Download artifact
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v3
       - run: allure generate -c reports -o _site
       - name: Save reports
         uses: actions/upload-artifact@v3
@@ -120,7 +120,7 @@ jobs:
     
     steps:
       - name: Download artifact
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v3
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
       - name: Deploy
