@@ -12,6 +12,22 @@ permissions:
   id-token: write
 
 jobs:
+  download_reports:
+    runs-on: ubuntu-latest
+    name: downloading_reports
+
+    steps:
+     - name: Set up Python 3.10
+       uses: actions/setup-python@v5
+       with:
+       python-version: "3.10"
+    - run: >
+        ARTIFACT_ID = $(curl -L \
+        -H "Accept: application/vnd.github+json" \
+        -H "X-GitHub-Api-Version: 2022-11-28" \ 
+        "https://api.github.com/repos/avgorjev/git_api_nasa/actions/artifacts?name=reports" 
+        | python -c "import sys, json; print(json.load(sys.stdin)['artifacts'][0]['id'])") 
+
   api_tests:
 
     runs-on: ubuntu-latest
