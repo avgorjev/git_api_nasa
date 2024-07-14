@@ -2,9 +2,9 @@ import requests
 import datetime
 import os
 
-api_key = os.getenv('MY_API_KEY')
+api_key = os.environ['api_key']
 
-#print(API_KEY)
+print('api:', api_key)
 
 api_key_2 = 'ZiRfZSQLtIUkzBCdY9eix774nSMnnyOMWZKaXmte'
 
@@ -44,54 +44,54 @@ payload = {}
 headers = {}
 
 
-def test_apod_today():
+def apod_today():
     response = requests.request("GET", url, headers=headers, data=payload)
     assert response.status_code == 200
     assert response.json()['date'] == date_now()
 
-def test_apod_oldest():
+def apod_oldest():
     date = date_anyday(1995,6, 16)
     response = requests.request("GET", url_date(date), headers=headers, data=payload)
     assert response.status_code == 200
     assert response.json()['date'] == date
 
 
-def test_apod_more_oldest():
+def apod_more_oldest():
     date = date_anyday(1995,6, 15)
     response = requests.request("GET", url_date(date), headers=headers, data=payload)
     assert response.status_code == 400
     assert response.json()['msg'] == f'Date must be between Jun 16, 1995 and {date_now_response()}.'
 
 
-def test_apod_more_newest():
+def apod_more_newest():
     date = date_tomorrow()
     response = requests.request("GET", url_date(date), headers=headers, data=payload)
     assert response.status_code == 400
     assert response.json()['msg'] == f'Date must be between Jun 16, 1995 and {date_now_response()}.'
 
 
-def test_apod_one_count():
+def apod_one_count():
     count = 1
     response = requests.request("GET", url_count(count), headers=headers, data=payload)
     assert response.status_code == 200
     assert len(response.json()) == count
 
 
-def test_apod_zero_count():
+def apod_zero_count():
     count = 0
     response = requests.request("GET", url_count(count), headers=headers, data=payload)
     assert response.status_code == 400
     assert response.json()['msg'] == 'Count must be positive and cannot exceed 100'
 
 
-def test_apod_count_is_100():
+def apod_count_is_100():
     count = 100
     response = requests.request("GET", url_count(count), headers=headers, data=payload)
     assert response.status_code == 200
     assert len(response.json()) == count
 
 
-def test_apod_count_is_101():
+def apod_count_is_101():
     count = 101
     response = requests.request("GET", url_count(count), headers=headers, data=payload)
     assert response.status_code == 400

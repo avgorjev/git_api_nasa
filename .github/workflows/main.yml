@@ -1,8 +1,10 @@
 name: Astronomy Picture of the Day
 
 on:
-
   workflow_dispatch
+
+env:
+  api_key: ${{ secrets.API_KEY }}
 
 permissions:
   contents: read
