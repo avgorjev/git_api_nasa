@@ -30,8 +30,6 @@ jobs:
     - name: All tests (with pytest and allure)
       run: |
         pytest -v -s --alluredir reports
-      env:
-        api_key: ${{ secrets.API_KEY }}
     - name: Save results
       uses: actions/upload-artifact@v4
       with: 

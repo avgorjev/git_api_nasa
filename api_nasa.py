@@ -2,9 +2,7 @@ import requests
 import datetime
 import os
 
-api_key = os.environ['api_key']
-
-print('api:', api_key)
+API_KEY = os.environ['api_key']
 
 api_key_2 = 'ZiRfZSQLtIUkzBCdY9eix774nSMnnyOMWZKaXmte'
 
@@ -30,15 +28,15 @@ def date_anyday_response(year:int, month:int, day:int):
     return datetime.datetime(year, month, day).strftime("%b %d, %Y")
 
 
-url = f"https://api.nasa.gov/planetary/apod?api_key={api_key}"
+url = f"https://api.nasa.gov/planetary/apod?api_key={API_KEY}"
 
-url_date_0 = f"https://api.nasa.gov/planetary/apod?api_key={api_key}&date={date_now()}"
+url_date_0 = f"https://api.nasa.gov/planetary/apod?api_key={API_KEY}&date={date_now()}"
 
 def url_date(date):
-    return f"https://api.nasa.gov/planetary/apod?api_key={api_key}&date={date}"
+    return f"https://api.nasa.gov/planetary/apod?api_key={API_KEY}&date={date}"
 
 def url_count(count):
-    return f"https://api.nasa.gov/planetary/apod?api_key={api_key}&count={count}"
+    return f"https://api.nasa.gov/planetary/apod?api_key={API_KEY}&count={count}"
 
 payload = {}
 headers = {}
