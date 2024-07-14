@@ -49,7 +49,7 @@ jobs:
         && unzip artifacts.zip -d reports
     - run: mkdir all-pages history-pages
         && unzip pages.zip -d all-pages
-    - run: cp history-pages -r reports
+    - run: cp history-pages/history/* reports
     - name: Save results
       uses: actions/upload-artifact@v3
       with:
