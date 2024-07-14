@@ -1,71 +1,40 @@
 import requests
-import datetime
-import os
+from base_endpoint import (DateTime,
+                            url,
+url_date_0,
+url_date,
+url_count,
+payload,
+headers
+                           )
 
-API_KEY = os.environ['api_key']
-
-
-
-def date_now():
-    return datetime.date.today().strftime("%Y-%m-%d")
-
-def date_tomorrow():
-    return (datetime.date.today() + datetime.timedelta(days=1)).strftime("%Y-%m-%d")
-
-
-def day_now():
-    return datetime.date.today().strftime("%d")
-
-
-def date_anyday(year:int, month:int, day:int):
-    return datetime.datetime(year, month, day).strftime("%Y-%m-%d")
-
-def date_now_response():
-    return datetime.date.today().strftime("%b %d, %Y")
-
-
-def date_anyday_response(year:int, month:int, day:int):
-    return datetime.datetime(year, month, day).strftime("%b %d, %Y")
-
-
-url = f"https://api.nasa.gov/planetary/apod?api_key={API_KEY}"
-
-url_date_0 = f"https://api.nasa.gov/planetary/apod?api_key={API_KEY}&date={date_now()}"
-
-def url_date(date):
-    return f"https://api.nasa.gov/planetary/apod?api_key={API_KEY}&date={date}"
-
-def url_count(count):
-    return f"https://api.nasa.gov/planetary/apod?api_key={API_KEY}&count={count}"
-
-payload = {}
-headers = {}
+base_date = DateTime()
 
 
 def test_apod_today():
     response = requests.request("GET", url, headers=headers, data=payload)
     assert response.status_code == 200
-    assert response.json()['date'] == date_now()
+    assert response.json()['date'] == base_date.date_now()
 
 def test_apod_oldest():
-    date = date_anyday(1995,6, 16)
+    date = base_date.date_anyday(1995,6, 16)
     response = requests.request("GET", url_date(date), headers=headers, data=payload)
     assert response.status_code == 200
     assert response.json()['date'] == date
 
 
 def test_apod_more_oldest():
-    date = date_anyday(1995,6, 15)
+    date = base_date.date_anyday(1995,6, 15)
     response = requests.request("GET", url_date(date), headers=headers, data=payload)
     assert response.status_code == 400
-    assert response.json()['msg'] == f'Date must be between Jun 16, 1995 and {date_now_response()}.'
+    assert response.json()['msg'] == f'Date must be between Jun 16, 1995 and {base_date.date_now_response()}.'
 
 
 def test_apod_more_newest():
-    date = date_tomorrow()
+    date = base_date.date_tomorrow()
     response = requests.request("GET", url_date(date), headers=headers, data=payload)
     assert response.status_code == 400
-    assert response.json()['msg'] == f'Date must be between Jun 16, 1995 and {date_now_response()}.'
+    assert response.json()['msg'] == f'Date must be between Jun 16, 1995 and {base_date.date_now_response()}.'
 
 
 def test_apod_one_count():
